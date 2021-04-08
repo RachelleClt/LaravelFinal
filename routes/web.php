@@ -32,3 +32,16 @@ Route::get('exemple', 'App\Http\Controllers\MonControleur@retournePageExemple');
 
 Route::get('membres', 'App\Http\Controllers\ControleurMembres@index');
 
+
+Route::get('membre/{numero}', 'App\Http\Controllers\ControleurMembres@afficher');
+Route::get('creer', 'App\Http\Controllers\ControleurMembres@creer');
+Route::post('creation/membre', 'App\Http\Controllers\ControleurMembres@enregistrer');
+Route::get('modifier/{id}', 'App\Http\Controllers\ControleurMembres@editer');
+Route::patch('miseAJour/{id}', 'App\Http\Controllers\ControleurMembres@miseAJour');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/identite','App\Http\Controllers\ControleurMembres@identite');
+Route::get('/protege','App\Http\Controllers\ControleurMembres@acces_protege')->middleware('auth');
